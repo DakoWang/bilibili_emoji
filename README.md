@@ -2,11 +2,11 @@
 > README由LLM生成，请注意鉴别
 
 ## 项目简介
-本项目用于根据指定的**bilibili** 平台表情包ID，从本地数据源自动下载、整理并生成表情包文件夹，包含表情图片、表情包图标、info.json 及 README.md，方便管理和在waline中使用。
+本项目用于根据指定的**bilibili**平台表情包ID，从**bilibili**平台接口中自动下载、整理为waline可使用的表情包，包含表情图片、表情包图标、info.json 及 README.md，方便管理和在waline中使用。
 
 ## 主要功能
 - 根据表情包 ID 自动查找并下载所有表情图片
-- **自动下载表情包官方图标文件**
+- 自动下载表情包官方图标文件
 - 自动生成包含表情包信息的 info.json 文件（使用预设图标）
 - 自动生成带有预览和表格的 README.md 文件
 - 支持批量处理多个表情包
@@ -19,7 +19,7 @@ output/
     ├── {ID}_icon.png           # 表情包官方图标
     ├── {ID}_{表情名称}.png      # 各个表情图片
     ├── info.json               # 表情包信息文件
-    └── README.md              # 表情包说明文档
+    └── README.md              # 表情包信息文档
 ```
 
 ## info.json 格式说明
@@ -42,18 +42,29 @@ output/
 ![](assets/image.png)
 
 ## 使用方法
-1. 安装依赖：
+1. clone本仓库以及子模块Bmoji
+
+   ⚠️Bmoji数据文件在本项目中以子模块的方式导入，clone时请加上`--recursive`参数一同clone子模块，如果不使用子模块的方法可以使用-d参数自行指定`emoji_data.json`
    ```bash
-   pip install requests
+   git clone --recursive https://github.com/DakoWang/bilibili_emoji.git
+   cd bilibili_emoji
    ```
-2. 运行主程序：
+2. 运行主程序
    ```bash
-   python run.py
+   python run.py 表情包id
    ```
    或自定义调用 `download_emoji_package(target_id)` 函数
+   爬出的表情包将保存在`output/id_name`文件夹中
 
-3. 修改目标表情包ID：
-   在 `run.py` 文件末尾的 `__main__` 部分修改 `target_id` 变量值
+3. 上传仓库
+   参考文章[Waline表情包制作-上传仓库 · Textline博客](https://blog.textline.top/blogs/waline%E8%A1%A8%E6%83%85%E5%8C%85%E5%88%B6%E4%BD%9C/#%E4%B8%8A%E4%BC%A0%E4%BB%93%E5%BA%93)
+
+本仓库爬好了`Mygo`和`Ave Mujica`两个表情包
+在waline客户端中的emoji列表中分别加入即可使用
+```
+https://cdn.jsdelivr.net/gh/DakoWang/bilibili_emoji@v1.0.1/output/5390_Mygo%E8%A1%A8%E6%83%85%E5%8C%85
+https://cdn.jsdelivr.net/gh/DakoWang/bilibili_emoji@v1.0.1/output/7961_Ave%20Mujica
+```
 
 ## 目录结构
 ```
@@ -86,4 +97,5 @@ walinemoji/
 
 ## 致谢
 感谢 Bmoji 项目及其贡献者提供的表情包数据支持。
+Copilot
 
