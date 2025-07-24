@@ -1,7 +1,7 @@
 {
   "name": "Mygo表情包",
-  "icon": "探头",
   "prefix": "5390_",
+  "icon": "icon",
   "type": "png",
   "items": [
     "害羞",

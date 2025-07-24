@@ -47,6 +47,15 @@ def download_emoji_package(target_id):
 
     items = []
 
+    # Download icon first
+    icon_url = target_data['icon'].replace('{baseURL}', 'https://i0.hdslb.com')
+    icon_filepath = os.path.join(emojis_folder, f"{prefix}icon.png")
+    
+    print(f"Downloading icon from {icon_url}")
+    response = requests.get(icon_url)
+    with open(icon_filepath, 'wb') as f:
+        f.write(response.content)
+
     # Download emojis
     for emoji in target_data['emojis']:
         name = emoji['name']
@@ -63,10 +72,14 @@ def download_emoji_package(target_id):
         
         items.append(name)
 
+    # Set icon name as "icon"
+    icon_name = "icon"
+
     # Create info.json
     info = {
         "name": target_data['text'],
         "prefix": prefix,
+        "icon": icon_name,
         "type": "png",
         "items": items
     }
