@@ -1,0 +1,3 @@
+[submodule "Bmoji"]
+	path = Bmoji
+	url = git@github.com:SakuraSenQwQ/Bmoji.git
